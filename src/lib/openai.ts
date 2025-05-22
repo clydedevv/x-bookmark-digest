@@ -50,11 +50,13 @@ Include the following sections:
 
 export async function categorizeBookmarks(bookmarks: Bookmark[]) {
   try {
-    // Create a list of bookmarks to categorize
-    const bookmarksList = bookmarks.map(bookmark => {
-      return `Tweet by @${bookmark.authorUsername}:
-${bookmark.content}`;
-    }).join('\n\n');
+    // Create a list of bookmarks to categorize including tweet IDs so the LLM
+    // can return them in the response
+    const bookmarksList = bookmarks
+      .map((bookmark) => {
+        return `Tweet ID: ${bookmark.tweetId}\nTweet by @${bookmark.authorUsername}:\n${bookmark.content}`;
+      })
+      .join('\n\n');
 
     const prompt = `
     You are a helpful assistant that analyzes and categorizes tweets. 
