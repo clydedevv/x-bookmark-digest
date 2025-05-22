@@ -72,6 +72,7 @@ model Bookmark {
   authorUsername String
   authorImage String?
   url         String
+  articleContent String?
   createdAt   DateTime @default(now())
   importedAt  DateTime @default(now())
   userId      String
