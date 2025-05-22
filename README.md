@@ -8,6 +8,7 @@ A Twitter/X bookmark management application that helps you organize, tag, and di
 - Auto-organize bookmarks by topic and author
 - Create custom reading digests
 - AI-powered chat with your bookmarks
+- Export digests to Notion
 - Schedule digests via X direct messages
 - Sync to Notion, Sheets and other platforms
 - Filter bookmarks by time to read
@@ -32,6 +33,8 @@ NEXTAUTH_SECRET="your-nextauth-secret"
 TWITTER_CLIENT_ID="your-twitter-client-id"
 TWITTER_CLIENT_SECRET="your-twitter-client-secret"
 OPENAI_API_KEY="your-openai-api-key"
+NOTION_API_KEY="your-notion-api-key"
+NOTION_DATABASE_ID="your-notion-database-id"
 ```
 
 ### Installation
@@ -56,6 +59,18 @@ npm run dev
 ```
 
 5. Visit http://localhost:3000 in your browser
+
+### External Integrations
+
+You can export a digest to Notion using the `/api/integrations/notion` endpoint.
+Make sure `NOTION_API_KEY` and `NOTION_DATABASE_ID` are set in your environment.
+Send a POST request with the digest ID:
+
+```bash
+curl -X POST -H "Content-Type: application/json" \
+  -d '{"digestId": "your-digest-id"}' \
+  http://localhost:3000/api/integrations/notion
+```
 
 ## Tech Stack
 
