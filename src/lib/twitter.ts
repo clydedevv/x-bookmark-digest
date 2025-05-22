@@ -1,5 +1,6 @@
 import { TwitterApi, UserV2 } from 'twitter-api-v2';
 import { prisma } from './prisma';
+import { fetchArticleContent } from './article';
 
 interface TwitterBookmark {
   id: string;
@@ -39,9 +40,12 @@ export async function fetchTwitterBookmarks(accessToken: string, userId: string)
     
     for (const bookmark of bookmarks) {
       const author = userMap.get(bookmark.author_id);
-      
+
       if (!author) continue;
-      
+
+      const urlMatch = bookmark.text.match(/https?:\/\/\S+/);
+      const articleContent = urlMatch ? await fetchArticleContent(urlMatch[0]) : null;
+
       const bookmarkData = {
         tweetId: bookmark.id,
         content: bookmark.text,
@@ -49,6 +53,7 @@ export async function fetchTwitterBookmarks(accessToken: string, userId: string)
         authorUsername: author.username,
         authorImage: author.profile_image_url || '',
         url: `https://twitter.com/${author.username}/status/${bookmark.id}`,
+        articleContent,
         userId,
       };
       
