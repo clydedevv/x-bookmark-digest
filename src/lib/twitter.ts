@@ -75,4 +75,16 @@ export async function fetchTwitterBookmarks(accessToken: string, userId: string)
     console.error('Error fetching Twitter bookmarks:', error);
     throw error;
   }
-} 
+}
+
+export async function postTweet(accessToken: string, text: string) {
+  const twitterClient = new TwitterApi(accessToken);
+
+  try {
+    const response = await twitterClient.v2.tweet(text);
+    return response.data;
+  } catch (error) {
+    console.error('Error posting tweet:', error);
+    throw error;
+  }
+}
