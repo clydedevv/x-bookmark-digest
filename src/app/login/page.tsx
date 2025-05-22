@@ -6,7 +6,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <button
         onClick={() => signIn("twitter")}
-        className="px-4 py-2 bg-black text-white rounded"
+        className="bg-blue-500 text-white py-2 px-4 rounded"
       >
         Sign in with Twitter
       </button>

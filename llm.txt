@@ -22,14 +22,18 @@ We've set up a modern full-stack application using:
 5. ✅ Implemented OpenAI services for:
    - Summarizing bookmarks
    - Categorizing bookmarks by topic
+6. ✅ Built basic UI components:
+   - Navigation bar with auth state
+   - Login page with Twitter sign-in
+   - Home page with welcome message
+   - Bookmarks page that displays user's bookmarks
 
 ## Remaining Tasks
-1. Frontend components
-   - Login page
-   - Dashboard
-   - Bookmark list/grid view
+1. Complete frontend components:
    - Digest creation/management UI
+   - Tag management
    - Settings page
+   - User profile
 2. Integration with Notion/Sheets
 3. Email digest scheduler
 4. Recipe system for bookmark filtering
@@ -57,5 +61,5 @@ We've set up a modern full-stack application using:
 4. Reading time estimation
 5. External integrations (Notion, Sheets)
 6. Topic/author-based filtering
-7. Chat with your bookmarks using AI 
+7. Chat with your bookmarks using AI
 8. (Important) Generate action items, insights, and broad user profiles based on their bookmarks, it could even roast them
