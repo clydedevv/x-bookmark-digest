@@ -165,6 +165,7 @@ exports.Prisma.BookmarkScalarFieldEnum = {
   authorUsername: 'authorUsername',
   authorImage: 'authorImage',
   url: 'url',
+  articleContent: 'articleContent',
   createdAt: 'createdAt',
   importedAt: 'importedAt',
   userId: 'userId'

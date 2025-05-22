@@ -1666,7 +1666,7 @@ export namespace Prisma {
     next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
   ) => $Utils.JsPromise<T>
 
-  // Get the minimum log level from the provided array of log settings
+  // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
 
   /**
@@ -6303,6 +6303,7 @@ export namespace Prisma {
     authorUsername: string | null
     authorImage: string | null
     url: string | null
+    articleContent: string | null
     createdAt: Date | null
     importedAt: Date | null
     userId: string | null
@@ -6316,6 +6317,7 @@ export namespace Prisma {
     authorUsername: string | null
     authorImage: string | null
     url: string | null
+    articleContent: string | null
     createdAt: Date | null
     importedAt: Date | null
     userId: string | null
@@ -6329,6 +6331,7 @@ export namespace Prisma {
     authorUsername: number
     authorImage: number
     url: number
+    articleContent: number
     createdAt: number
     importedAt: number
     userId: number
@@ -6344,6 +6347,7 @@ export namespace Prisma {
     authorUsername?: true
     authorImage?: true
     url?: true
+    articleContent?: true
     createdAt?: true
     importedAt?: true
     userId?: true
@@ -6357,6 +6361,7 @@ export namespace Prisma {
     authorUsername?: true
     authorImage?: true
     url?: true
+    articleContent?: true
     createdAt?: true
     importedAt?: true
     userId?: true
@@ -6370,6 +6375,7 @@ export namespace Prisma {
     authorUsername?: true
     authorImage?: true
     url?: true
+    articleContent?: true
     createdAt?: true
     importedAt?: true
     userId?: true
@@ -6456,6 +6462,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage: string | null
     url: string
+    articleContent: string | null
     createdAt: Date
     importedAt: Date
     userId: string
@@ -6486,6 +6493,7 @@ export namespace Prisma {
     authorUsername?: boolean
     authorImage?: boolean
     url?: boolean
+    articleContent?: boolean
     createdAt?: boolean
     importedAt?: boolean
     userId?: boolean
@@ -6503,6 +6511,7 @@ export namespace Prisma {
     authorUsername?: boolean
     authorImage?: boolean
     url?: boolean
+    articleContent?: boolean
     createdAt?: boolean
     importedAt?: boolean
     userId?: boolean
@@ -6517,6 +6526,7 @@ export namespace Prisma {
     authorUsername?: boolean
     authorImage?: boolean
     url?: boolean
+    articleContent?: boolean
     createdAt?: boolean
     importedAt?: boolean
     userId?: boolean
@@ -6531,12 +6541,13 @@ export namespace Prisma {
     authorUsername?: boolean
     authorImage?: boolean
     url?: boolean
+    articleContent?: boolean
     createdAt?: boolean
     importedAt?: boolean
     userId?: boolean
   }
 
-  export type BookmarkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tweetId" | "content" | "authorName" | "authorUsername" | "authorImage" | "url" | "createdAt" | "importedAt" | "userId", ExtArgs["result"]["bookmark"]>
+  export type BookmarkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tweetId" | "content" | "authorName" | "authorUsername" | "authorImage" | "url" | "articleContent" | "createdAt" | "importedAt" | "userId", ExtArgs["result"]["bookmark"]>
   export type BookmarkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     tags?: boolean | Bookmark$tagsArgs<ExtArgs>
@@ -6565,6 +6576,7 @@ export namespace Prisma {
       authorUsername: string
       authorImage: string | null
       url: string
+      articleContent: string | null
       createdAt: Date
       importedAt: Date
       userId: string
@@ -7001,6 +7013,7 @@ export namespace Prisma {
     readonly authorUsername: FieldRef<"Bookmark", 'String'>
     readonly authorImage: FieldRef<"Bookmark", 'String'>
     readonly url: FieldRef<"Bookmark", 'String'>
+    readonly articleContent: FieldRef<"Bookmark", 'String'>
     readonly createdAt: FieldRef<"Bookmark", 'DateTime'>
     readonly importedAt: FieldRef<"Bookmark", 'DateTime'>
     readonly userId: FieldRef<"Bookmark", 'String'>
@@ -12886,6 +12899,7 @@ export namespace Prisma {
     authorUsername: 'authorUsername',
     authorImage: 'authorImage',
     url: 'url',
+    articleContent: 'articleContent',
     createdAt: 'createdAt',
     importedAt: 'importedAt',
     userId: 'userId'
@@ -13338,6 +13352,7 @@ export namespace Prisma {
     authorUsername?: StringFilter<"Bookmark"> | string
     authorImage?: StringNullableFilter<"Bookmark"> | string | null
     url?: StringFilter<"Bookmark"> | string
+    articleContent?: StringNullableFilter<"Bookmark"> | string | null
     createdAt?: DateTimeFilter<"Bookmark"> | Date | string
     importedAt?: DateTimeFilter<"Bookmark"> | Date | string
     userId?: StringFilter<"Bookmark"> | string
@@ -13354,6 +13369,7 @@ export namespace Prisma {
     authorUsername?: SortOrder
     authorImage?: SortOrderInput | SortOrder
     url?: SortOrder
+    articleContent?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     importedAt?: SortOrder
     userId?: SortOrder
@@ -13373,6 +13389,7 @@ export namespace Prisma {
     authorUsername?: StringFilter<"Bookmark"> | string
     authorImage?: StringNullableFilter<"Bookmark"> | string | null
     url?: StringFilter<"Bookmark"> | string
+    articleContent?: StringNullableFilter<"Bookmark"> | string | null
     createdAt?: DateTimeFilter<"Bookmark"> | Date | string
     importedAt?: DateTimeFilter<"Bookmark"> | Date | string
     userId?: StringFilter<"Bookmark"> | string
@@ -13389,6 +13406,7 @@ export namespace Prisma {
     authorUsername?: SortOrder
     authorImage?: SortOrderInput | SortOrder
     url?: SortOrder
+    articleContent?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     importedAt?: SortOrder
     userId?: SortOrder
@@ -13408,6 +13426,7 @@ export namespace Prisma {
     authorUsername?: StringWithAggregatesFilter<"Bookmark"> | string
     authorImage?: StringNullableWithAggregatesFilter<"Bookmark"> | string | null
     url?: StringWithAggregatesFilter<"Bookmark"> | string
+    articleContent?: StringNullableWithAggregatesFilter<"Bookmark"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Bookmark"> | Date | string
     importedAt?: DateTimeWithAggregatesFilter<"Bookmark"> | Date | string
     userId?: StringWithAggregatesFilter<"Bookmark"> | string
@@ -13987,6 +14006,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage?: string | null
     url: string
+    articleContent?: string | null
     createdAt?: Date | string
     importedAt?: Date | string
     user: UserCreateNestedOneWithoutBookmarksInput
@@ -14002,6 +14022,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage?: string | null
     url: string
+    articleContent?: string | null
     createdAt?: Date | string
     importedAt?: Date | string
     userId: string
@@ -14017,6 +14038,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBookmarksNestedInput
@@ -14032,6 +14054,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -14047,6 +14070,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage?: string | null
     url: string
+    articleContent?: string | null
     createdAt?: Date | string
     importedAt?: Date | string
     userId: string
@@ -14060,6 +14084,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14072,6 +14097,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -14721,6 +14747,7 @@ export namespace Prisma {
     authorUsername?: SortOrder
     authorImage?: SortOrder
     url?: SortOrder
+    articleContent?: SortOrder
     createdAt?: SortOrder
     importedAt?: SortOrder
     userId?: SortOrder
@@ -14734,6 +14761,7 @@ export namespace Prisma {
     authorUsername?: SortOrder
     authorImage?: SortOrder
     url?: SortOrder
+    articleContent?: SortOrder
     createdAt?: SortOrder
     importedAt?: SortOrder
     userId?: SortOrder
@@ -14747,6 +14775,7 @@ export namespace Prisma {
     authorUsername?: SortOrder
     authorImage?: SortOrder
     url?: SortOrder
+    articleContent?: SortOrder
     createdAt?: SortOrder
     importedAt?: SortOrder
     userId?: SortOrder
@@ -15926,6 +15955,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage?: string | null
     url: string
+    articleContent?: string | null
     createdAt?: Date | string
     importedAt?: Date | string
     tags?: BookmarkTagCreateNestedManyWithoutBookmarkInput
@@ -15940,6 +15970,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage?: string | null
     url: string
+    articleContent?: string | null
     createdAt?: Date | string
     importedAt?: Date | string
     tags?: BookmarkTagUncheckedCreateNestedManyWithoutBookmarkInput
@@ -16125,6 +16156,7 @@ export namespace Prisma {
     authorUsername?: StringFilter<"Bookmark"> | string
     authorImage?: StringNullableFilter<"Bookmark"> | string | null
     url?: StringFilter<"Bookmark"> | string
+    articleContent?: StringNullableFilter<"Bookmark"> | string | null
     createdAt?: DateTimeFilter<"Bookmark"> | Date | string
     importedAt?: DateTimeFilter<"Bookmark"> | Date | string
     userId?: StringFilter<"Bookmark"> | string
@@ -16492,6 +16524,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage?: string | null
     url: string
+    articleContent?: string | null
     createdAt?: Date | string
     importedAt?: Date | string
     user: UserCreateNestedOneWithoutBookmarksInput
@@ -16506,6 +16539,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage?: string | null
     url: string
+    articleContent?: string | null
     createdAt?: Date | string
     importedAt?: Date | string
     userId: string
@@ -16553,6 +16587,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBookmarksNestedInput
@@ -16567,6 +16602,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -16739,6 +16775,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage?: string | null
     url: string
+    articleContent?: string | null
     createdAt?: Date | string
     importedAt?: Date | string
     user: UserCreateNestedOneWithoutBookmarksInput
@@ -16753,6 +16790,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage?: string | null
     url: string
+    articleContent?: string | null
     createdAt?: Date | string
     importedAt?: Date | string
     userId: string
@@ -16816,6 +16854,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutBookmarksNestedInput
@@ -16830,6 +16869,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -16936,6 +16976,7 @@ export namespace Prisma {
     authorUsername: string
     authorImage?: string | null
     url: string
+    articleContent?: string | null
     createdAt?: Date | string
     importedAt?: Date | string
   }
@@ -17032,6 +17073,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tags?: BookmarkTagUpdateManyWithoutBookmarkNestedInput
@@ -17046,6 +17088,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tags?: BookmarkTagUncheckedUpdateManyWithoutBookmarkNestedInput
@@ -17060,6 +17103,7 @@ export namespace Prisma {
     authorUsername?: StringFieldUpdateOperationsInput | string
     authorImage?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
+    articleContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     importedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

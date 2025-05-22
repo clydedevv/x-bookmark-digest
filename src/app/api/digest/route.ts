@@ -4,6 +4,10 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { prisma } from '@/lib/prisma';
 import { generateDigestSummary } from '@/lib/openai';
 import { z } from 'zod';
+import { mockBookmarks, mockDigests } from '@/lib/mockData';
+
+// Flag for testing with mock data
+const USE_MOCK_DATA = false;
 
 const createDigestSchema = z.object({
   name: z.string().min(1),
@@ -29,6 +33,38 @@ export async function POST(request: NextRequest) {
     }
     
     const { name, description, bookmarkIds, schedule } = validation.data;
+    
+    // For testing purposes, return a mock digest
+    if (USE_MOCK_DATA) {
+      const sampleSummary = `
+# Weekly Tech Digest
+
+## Key Themes
+- Product Launches
+- SaaS Business Strategies
+- React Performance Optimization
+
+## Notable Insights
+- New products are being launched with increasing focus on user experience
+- SaaS businesses are focusing on retention metrics over acquisition
+- React applications can be significantly optimized through proper state management
+
+## Action Items & Takeaways
+- Check out the new product release at example.com
+- Review the SaaS thread for business growth strategies
+- Implement React optimization techniques in your projects
+      `;
+      
+      return NextResponse.json({
+        digest: {
+          ...mockDigests[0],
+          name,
+          description: description || 'Mock digest description',
+          schedule,
+        },
+        summary: sampleSummary,
+      });
+    }
     
     // Fetch the bookmarks from the database
     const bookmarks = await prisma.bookmark.findMany({
@@ -85,6 +121,11 @@ export async function GET() {
     
     if (!session || !session.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    
+    // For testing purposes, return mock digests
+    if (USE_MOCK_DATA) {
+      return NextResponse.json({ digests: mockDigests });
     }
     
     // Get all digests for the user

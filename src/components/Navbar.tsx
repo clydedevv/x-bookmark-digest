@@ -13,6 +13,8 @@ export default function Navbar() {
         {session ? (
           <>
             <Link href="/bookmarks">Bookmarks</Link>
+            <Link href="/digests">Digests</Link>
+            <Link href="/insights">Insights</Link>
             <button onClick={() => signOut()} className="text-sm underline">
               Sign out
             </button>

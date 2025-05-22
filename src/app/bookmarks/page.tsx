@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { authOptions } from '../api/auth/[...nextauth]/route';
+import ImportBookmarks from '@/components/ImportBookmarks';
 
 interface Bookmark {
   id: string;
@@ -31,7 +32,10 @@ export default async function BookmarksPage() {
   return (
     <div className="max-w-3xl mx-auto p-4">
       <h1 className="text-2xl font-semibold mb-4">Bookmarks</h1>
-      {bookmarks.length === 0 && <p>No bookmarks found.</p>}
+      
+      <ImportBookmarks />
+      
+      {bookmarks.length === 0 && <p>No bookmarks found. Import your bookmarks to get started.</p>}
       <ul className="flex flex-col gap-4">
         {bookmarks.map((bookmark) => (
           <li key={bookmark.id} className="border p-4 rounded">

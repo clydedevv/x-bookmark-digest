@@ -3,6 +3,10 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { fetchTwitterBookmarks } from '@/lib/twitter';
 import { prisma } from '@/lib/prisma';
+import { mockBookmarks } from '@/lib/mockData';
+
+// Flag for testing with mock data
+const USE_MOCK_DATA = false;
 
 export async function GET() {
   try {
@@ -10,6 +14,11 @@ export async function GET() {
     
     if (!session || !session.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    
+    // For testing purposes, use mock data
+    if (USE_MOCK_DATA) {
+      return NextResponse.json({ bookmarks: mockBookmarks });
     }
     
     // Get user bookmarks from database
@@ -42,6 +51,14 @@ export async function POST() {
     
     if (!session || !session.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    
+    // For testing purposes, return success with mock data
+    if (USE_MOCK_DATA) {
+      return NextResponse.json({
+        message: 'Bookmarks imported successfully',
+        count: mockBookmarks.length,
+      });
     }
     
     // We need the Twitter access token from the session
