@@ -8,7 +8,7 @@ A Twitter/X bookmark management application that helps you organize, tag, and di
 - Auto-organize bookmarks by topic and author
 - Create custom reading digests
 - AI-powered chat with your bookmarks
-- Schedule email digests
+- Schedule digests via X direct messages
 - Sync to Notion, Sheets and other platforms
 - Filter bookmarks by time to read
 
@@ -66,6 +66,27 @@ npm run dev
 - Twitter API v2 - Bookmark access
 - OpenAI API - AI-powered features
 - Headless UI - UI components
+
+## Generating Personas
+
+The `scripts/generatePersonas.ts` utility creates a short persona from a
+user's latest bookmarks and tweets it automatically. Configure the following
+environment variables:
+
+```
+OPENAI_API_KEY=your-openai-key
+TWITTER_ACCESS_TOKEN=token-with-write-access
+PERSONA_USER_ID=your-user-id
+```
+
+Then run:
+
+```bash
+npx ts-node scripts/generatePersonas.ts
+```
+
+The script will analyze the bookmarks, generate a persona description, and post
+it to your account.
 
 ## Learn More
 
