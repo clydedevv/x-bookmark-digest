@@ -99,4 +99,31 @@ export async function categorizeBookmarks(bookmarks: Bookmark[]) {
     console.error('Error categorizing bookmarks with OpenAI:', error);
     throw error;
   }
-} 
+}
+
+export async function generateUserPersona(bookmarks: Bookmark[]): Promise<string> {
+  try {
+    const bookmarkContent = bookmarks
+      .map((bookmark) => {
+        return `Tweet by @${bookmark.authorUsername} (${bookmark.authorName}):\n\n${bookmark.content}\n\nURL: ${bookmark.url}\n---`;
+      })
+      .join('\n\n');
+
+    const prompt = `You are an AI assistant that reviews a user's saved tweets to build a short persona profile. Analyze the combined content and provide the following sections:\n\nPersona - Who this user appears to be based on these tweets.\nKey Insights - Notable interests or themes you detect.\nAction Items - Suggested next steps or resources for the user.`;
+
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4',
+      messages: [
+        { role: 'system', content: prompt },
+        { role: 'user', content: bookmarkContent },
+      ],
+      temperature: 0.7,
+      max_tokens: 1500,
+    });
+
+    return response.choices[0].message.content || '';
+  } catch (error) {
+    console.error('Error generating user persona with OpenAI:', error);
+    throw error;
+  }
+}
