@@ -1,0 +1,61 @@
+# X Bookmark Digest Project Plan
+
+## App Overview
+X Bookmark Digest is a tool for Twitter/X users to organize, tag, and digest their bookmarks. It allows users to import their Twitter bookmarks, automatically organize them, create custom reading digests, and generate AI-powered summaries.
+
+## Current Approach
+We've set up a modern full-stack application using:
+- Next.js with App Router for the frontend
+- PostgreSQL with Prisma ORM for the database
+- NextAuth.js for Twitter OAuth authentication
+- Twitter API v2 for accessing bookmarks
+- OpenAI API for AI-powered features (digests, categorization)
+
+## Current Progress
+1. ✅ Set up Next.js project with TypeScript and Tailwind CSS
+2. ✅ Defined database schema with Prisma (users, bookmarks, tags, digests, recipes)
+3. ✅ Configured Twitter OAuth authentication with NextAuth
+4. ✅ Created API endpoints for:
+   - Fetching Twitter bookmarks
+   - Storing bookmarks in database
+   - Generating digests with OpenAI
+5. ✅ Implemented OpenAI services for:
+   - Summarizing bookmarks
+   - Categorizing bookmarks by topic
+
+## Remaining Tasks
+1. Frontend components
+   - Login page
+   - Dashboard
+   - Bookmark list/grid view
+   - Digest creation/management UI
+   - Settings page
+2. Integration with Notion/Sheets
+3. Email digest scheduler
+4. Recipe system for bookmark filtering
+5. AI chat interface for bookmark interaction
+6. Mobile-responsive design
+
+## Technical Requirements
+- Twitter API access (OAuth tokens)
+- OpenAI API key
+- PostgreSQL database
+- Node.js environment
+
+## User Flow
+1. User logs in with Twitter
+2. Imports bookmarks (one-click)
+3. System auto-categorizes bookmarks
+4. User can create digests (select bookmarks + schedule)
+5. User receives digests via email and/or app
+6. Optional sync to Notion/Sheets
+
+## Key Features
+1. Zero-friction import from Twitter bookmarks
+2. AI-powered organization and tagging
+3. Custom digest creation with scheduling
+4. Reading time estimation
+5. External integrations (Notion, Sheets)
+6. Topic/author-based filtering
+7. Chat with your bookmarks using AI 
+8. (Important) Generate action items, insights, and broad user profiles based on their bookmarks, it could even roast them
